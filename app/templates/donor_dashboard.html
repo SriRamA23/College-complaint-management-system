@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Donor Dashboard</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #fdfdfd;
+      padding: 20px;
+    }
+    h2 {
+      color: crimson;
+    }
+    .status {
+      margin-top: 15px;
+    }
+    .request {
+      border: 1px solid #ccc;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Welcome, {{ donor_name }}</h2>
+  <p>Blood Group: {{ blood_group }} | Location: {{ location }}</p>
+  <div class="status">
+    Availability: <strong>{{ 'Available' if availability else 'Unavailable' }}</strong>
+  </div>
+
+  <h3>Nearby Blood Requests</h3>
+  {% for req in requests %}
+    <div class="request">
+      <p><strong>Need:</strong> {{ req.blood_group }} | <strong>Location:</strong> {{ req.location }}</p>
+      <p><strong>Urgency:</strong> {{ req.urgency }} | <strong>Contact:</strong> {{ req.contact }}</p>
+    </div>
+  {% endfor %}
+</body>
+</html>
